@@ -12,9 +12,6 @@ get('/') do
 erb(:index)
 end
 
-get('/taker') do
-erb(:taker)
-end
 get('/designer') do
   @surveys = Survey.all()
   @questions = Question.all()
@@ -86,4 +83,17 @@ delete('/question/:id') do
   @question.delete()
   @questions = Question.all()
   redirect('/designer')
+end
+
+get('/taker') do
+  @surveys = Survey.all()
+  erb(:taker)
+end
+
+post('/taker') do
+  @surveys = Survey.all
+  survey = params['survey']
+  
+  binding.pry
+  erb(:taker)
 end

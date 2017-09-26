@@ -1,1 +1,16 @@
-<em> n o p e </em>
+<h3>Choose a survey to take!</h3>
+
+<form class="form-group" action="/taker" method="post">
+  <% if @surveys.any?() %>
+    <h3>Here are the surveys</h3>
+    <select class="" name="survey">
+    <% @surveys.each do |survey| %>
+      <option value="<%= survey.survey %>"><%= survey.survey %></option>
+    <% end %>
+    <% else %>
+      <h3>There are no surveys</h3>
+    <% end %>
+  </select>
+  <br><br>
+  <button type="submit" class="btn">Take the Survey!</button>
+</form>
