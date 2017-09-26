@@ -31,14 +31,14 @@ end
 get('/survey/:id') do
   survey_id = params[:id]
   @survey = Survey.find(params["id"].to_i)
-  @questions = Question.all
+  @questions = @survey.questions
   erb(:survey_info)
 end
 
 post('/survey/:id') do
   survey_id = params[:id]
   @survey = Survey.find(params["id"].to_i)
-  @questions = Question.all
+  @questions = @survey.questions
   question = params['question']
   @question = Question.new({:question => question, :survey_id => survey_id})
   if @question.save()
