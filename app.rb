@@ -50,6 +50,7 @@ end
 
 delete('/survey/:id') do
   @survey = Survey.find(params['id'].to_i)
+  @survey.questions.each { |q| q.delete }
   @survey.delete()
   @surveys = Survey.all()
   redirect('/designer')
