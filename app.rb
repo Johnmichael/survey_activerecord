@@ -31,5 +31,19 @@ end
 get('/survey/:id') do
   survey_id = params[:id]
   @survey = Survey.find(params["id"].to_i)
+  @questions = Question.all
   erb(:survey_info)
+end
+
+post('/survey/:id') do
+  survey_id = params[:id]
+  @survey = Survey.find(params["id"].to_i)
+  @questions = Question.all
+  question = params['question']
+  @question = Question.new({:question => question, :survey_id => survey_id})
+  if @question.save()
+    erb(:survey_info)
+  else
+    erb(:error)
+  end
 end

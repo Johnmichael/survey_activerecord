@@ -1,28 +1,31 @@
 <h1>Selected Survey: <%= @survey.survey %></h1>
 
-<h3>Current Questions</h3>
+<% if @questions.any?() %>
+  <h3>Current Questions</h3>
+  <% @questions.each do |question| %>
+    <h4><a href="/question/<%= question.id()%>"><%= question.question %></a></h4>
+    <% end %>
 
-<p>Questions currently in the survey</p>
+    <% else %>
+      <h3>There are no questions</h3>
+    <% end %>
 
 <h3>Add Questions</h3>
-
-<p>Questions available to add to survey</p>
 
 <form action="/survey/<%= @survey.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <label for="description">Redescribe your employee:</label>
-  <input id="name" name="name" type="text">
+  <input name="name" type="text">
   <button type="submit">Add Question</button>
 </form>
 
 
 
 <h3>Create Questions </h3>
-<label for="">Question 1</label><br>
-<input type="text" name="question" value=""> <br>
-<a href="/add_question"><button type="button" name="button">Add Question</button></a>
-<br>
-<a href="/"><button type="button" name="button">Create Survey</button></a>
+<form class="form-group" action="/survey/<%= @survey.id() %>" method="post">
+  <input type="text" name="question">
+  <button type="submit" class="btn">Create Question</button>
+</form>
 
 <br>
 <div class="container">
