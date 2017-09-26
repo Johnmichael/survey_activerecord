@@ -7,6 +7,10 @@ require './lib/survey'
 require './lib/question'
 require 'pg'
 
+get('/') do
+  redirect '/designer'
+end
+
 get('/designer') do
   @surveys = Survey.all()
   @questions = Question.all()
@@ -22,7 +26,6 @@ post('/designer') do
   else
     erb(:error)
   end
-  # erb(:designer)
 end
 
 get('/survey/:id') do
