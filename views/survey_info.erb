@@ -31,3 +31,9 @@
 <div class="container">
   <a href="/designer"><button class="btn">Return Home</a>
 </div>
+
+<br>
+<form action="/survey/<%= @survey.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn-danger">Delete Survey</button>
+</form>

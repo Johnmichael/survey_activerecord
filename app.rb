@@ -47,3 +47,24 @@ post('/survey/:id') do
     erb(:error)
   end
 end
+
+delete('/survey/:id') do
+  @survey = Survey.find(params['id'].to_i)
+  @survey.delete()
+  @surveys = Survey.all()
+  redirect('/designer')
+end
+
+
+get('/question/:id') do
+  question_id = params[:id]
+  @question = Question.find(params["id"].to_i)
+  erb(:question_info)
+end
+
+delete('/question/:id') do
+  @question = Question.find(params['id'].to_i)
+  @question.delete()
+  @questions = Question.all()
+  redirect('/designer')
+end

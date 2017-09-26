@@ -1,0 +1,21 @@
+<h2><%= @question.question%></h2>
+
+<h3>Add Questions</h3>
+
+<form action="/question/<%= @question.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete Question</button>
+</form>
+
+
+
+<!-- <h3>Create Questions </h3>
+<form class="form-group" action="/question/<%= @question.id() %>" method="post">
+  <input type="text" name="question">
+  <button type="submit" class="btn">Create Question</button>
+</form> -->
+
+<br>
+<div class="container">
+  <a href="/designer"><button class="btn">Return Home</a>
+</div>
