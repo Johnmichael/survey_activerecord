@@ -8,9 +8,7 @@ private
   def titlecase_survey
     words = self.survey.split
     words.each do |word|
-      unless (word.include?("of")) || (word.include?("the")) && (word.first "the")
-        word.capitalize!
-      end
+      word.capitalize!
     end
     self.survey = words.join(" ")
   end

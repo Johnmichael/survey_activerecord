@@ -15,9 +15,14 @@ end
 
 post('/designer') do
   survey = params['survey']
-  @survey = Survey.create(:survey => survey)
+  @survey = Survey.new({:survey => survey})
   @surveys = Survey.all
-  erb(:designer)
+  if @survey.save()
+    erb(:designer)
+  else
+    erb(:error)
+  end
+  # erb(:designer)
 end
 
 get('/survey/:id') do
