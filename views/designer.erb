@@ -1,0 +1,16 @@
+<h1>Add a new Survey</h1>
+<% if @surveys.any?() %>
+  <h3>Here are your surveys</h3>
+  <% @surveys.each do |survey| %>
+    <h4><a href="/survey/<%= survey.id()%>"><%= survey.survey %></a></h4>
+    <% end %>
+
+    <% else %>
+      <h3>There are no surveys</h3>
+    <% end %>
+
+<h3>Add a new survey:</h3>
+  <form class="form-group" action="/designer" method="post">
+    <input type="text" name="survey">
+    <button type="submit" class="btn">Create Survey</button>
+  </form>
