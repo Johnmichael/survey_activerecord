@@ -5,12 +5,16 @@ require 'sinatra/reloader'
 also_reload'.lib/**/*.rb'
 require './lib/survey'
 require './lib/question'
+require './lib/answer'
 require 'pg'
 
 get('/') do
-  redirect '/designer'
+erb(:index)
 end
 
+get('/taker') do
+erb(:taker)
+end
 get('/designer') do
   @surveys = Survey.all()
   @questions = Question.all()
@@ -60,7 +64,21 @@ end
 get('/question/:id') do
   question_id = params[:id]
   @question = Question.find(params["id"].to_i)
+  @answers = Answer.all()
   erb(:question_info)
+end
+
+post('/question/:id') do
+  @question = Question.find(params["id"].to_i)
+  answer_id = params[:id]
+  answer = params['answer']
+  @answers = Answer.all()
+  @answer = Answer.new({:answer => answer, :question_id => answer_id})
+  if @answer.save()
+    erb(:question_info)
+  else
+    erb(:error)
+  end
 end
 
 delete('/question/:id') do

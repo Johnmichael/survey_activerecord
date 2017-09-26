@@ -1,19 +1,31 @@
-<h2><%= @question.question%></h2>
+<h2>Current Question: <%= @question.question%></h2>
 
-<h3>Add Questions</h3>
+<% if @answers.any?() %>
+  <h3>Current Answers</h3>
+  <% @answers.each do |answer| %>
+    <h4><a href="/question/<%= @question.id()%>"><%= answer.answer %></a></h4>
+    <% end %>
+    <% else %>
+      <h3>There are no answers</h3>
+    <% end %>
 
-<form action="/question/<%= @question.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-  <button type="submit">Delete Question</button>
+
+<form class="form-group" action="/question/<%= @question.id() %>" method="post">
+  <label for="answer">Create Answers:</label><br>
+  <input type="text" name="answer" placeholder="Answer"><br>
+<button type="submit">Create Answers</button>
 </form>
-
-
 
 <!-- <h3>Create Questions </h3>
 <form class="form-group" action="/question/<%= @question.id() %>" method="post">
   <input type="text" name="question">
   <button type="submit" class="btn">Create Question</button>
 </form> -->
+
+<form action="/question/<%= @question.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete Question</button>
+</form>
 
 <br>
 <div class="container">
