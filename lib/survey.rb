@@ -1,11 +1,11 @@
 class Survey < ActiveRecord::Base
   has_many(:questions)
   validates(:survey, {:presence => true, :length => {:maximum => 50}})
-  before_save(:upcase_survey)
+  before_save(:titlecase_survey)
 
 private
 
-  def upcase_survey
+  def titlecase_survey
     words = self.survey.split
     words.each do |word|
       unless (word.include?("of")) || (word.include?("the")) && (word.first "the")

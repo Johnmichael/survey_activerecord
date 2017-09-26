@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe(Survey) do
 
-  # describe('#division') do
-  #   it('tells which division the employee belongs to') do
-  #     test_division = Division.create({:title => 'ACME'})
-  #     test_employee1 = Employee.create({:name => 'John', :division_id => test_division.id})
-  #     expect(test_employee1.division()).to(eq(test_division))
-  #
-  #   end
-  # end
+  describe '#titlecase_survey' do
+     it 'converts inputted string to titlecase' do
+       test_survey = Survey.create({:survey => 'what is your favorite color'})
+       expect(test_survey.survey).to eq 'What Is Your Favorite Color'
+     end
+   end
 end
